@@ -1,0 +1,25 @@
+Marcar Ponto Funcionário
+Este projeto consiste em um sistema de controle de ponto de funcionários que permite calcular horas extras e atrasos. O sistema está rodando na seguinte URL: http://localhost:8080/pontofuncionario/
+
+Funcionalidades
+Cálculo de Horas Extras
+O sistema permite o cálculo de horas extras dos funcionários. Para tanto, é necessário informar a hora de entrada e saída do funcionário, além de seu horário padrão de trabalho. O cálculo é realizado automaticamente pelo sistema e apresentado na tela de consulta.
+
+Cálculo de Atrasos
+O sistema também permite o cálculo de atrasos dos funcionários. Para tanto, é necessário informar a hora de entrada e saída do funcionário, além de seu horário padrão de trabalho. O cálculo é realizado automaticamente pelo sistema e apresentado na tela de consulta.
+
+Formatação de Data
+O sistema permite a formatação de datas. Essa funcionalidade é utilizada internamente pelo sistema para formatar as datas apresentadas na tela de consulta.
+
+Testes Unitários
+O projeto conta com testes unitários que foram criados para validar as funcionalidades de cálculo de atrasos, horas extras e formatação de data. Esses testes garantem que as funcionalidades do sistema estão funcionando corretamente e que as alterações realizadas no código não causam problemas na funcionalidade do sistema.
+
+Execução do Projeto
+Para executar o projeto localmente, siga os seguintes passos:
+
+Certifique-se de ter o ambiente de desenvolvimento Java instalado na sua máquina.
+Baixe o projeto em sua máquina local.
+Abra o terminal e navegue até a pasta do projeto.
+Execute o comando mvn clean package para compilar o projeto e gerar o arquivo .war.
+Depois de gerado o arquivo .war, execute o Tomcat e, em seguida, copie o arquivo .war para a pasta webapps do Tomcat.
+Acesse a URL http://localhost:8080/pontofuncionario/ para acessar o sistema.
