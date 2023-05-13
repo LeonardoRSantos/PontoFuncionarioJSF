@@ -28,16 +28,6 @@
 			document.getElementById('form:saida').value = '';
 			document.getElementById('form:entrada2').value = '';
 			document.getElementById('form:saida2').value = '';
-
-			// Limpa a tabela
-			  PF('tanbleMarcacoes').clearFilters();
-
-			  // Atualiza a tabela
-			  PF('tanbleMarcacoes').filter();
-
-			  // Limpa todas as seleções e filtros aplicados no dataTable
-			  PF('tanbleMarcacoes').clear();  
-			  
 		}
 	</script>
 </h:head>
@@ -47,7 +37,7 @@
 		<h2>Horário de trabalho</h2>
 		<p>Preencha os campos abaixo para cadastrar um novo registro:</p>
 
-		<h:form id="form">
+		<h:form id="form" class="col-sm-12">
 			<div class="row">
 				<div class="col-md-4">
 					<label for="entrada">Entrada:</label>
@@ -85,7 +75,7 @@
 									<p:commandButton id="cadastrarHorario"
 										value="Cadastrar Horários"
 										action="#{horarioTrabalhoBean.cadastrarHorario}"
-										update=":form:tanbleMarcacoes" />
+										update=":form:tanbleMarcacoes" styleClass="btn btn-primary" />
 								</div>
 							</div>
 						</tbody>
@@ -102,36 +92,38 @@
 				style="display: flex; justify-content: space-between; align-items: center;">
 				<h2 class="titulo">Cálculo de Atrasos e Hora Extra</h2>
 				<p:commandButton id="limparDados" value="Limpar Dados"
-					action="#{horarioTrabalhoBean.limpar}"
-					onclick="limpar()"
-					update="entrada saida entrada2 saida2"			
-					type="button">
-					<f:ajax  render=":form:tanbleMarcacoes"></f:ajax>
+					action="#{horarioTrabalhoBean.limpar}" onclick="limpar()"
+					update="entrada saida entrada2 saida2" type="button"
+					styleClass="btn btn-danger">
+					<f:ajax render=":form:tanbleMarcacoes" />
 				</p:commandButton>
-				
-			</div>
-			<p:outputPanel   columns="2" columnClasses="coluna1,coluna2">
-				<p:dataTable id="tanbleMarcacoes" value="#{horarioTrabalhoBean.horariosMarcacoes}" var="hm">
 
-					<p:column headerText="Entrada Horário De Trabalho">
-						<h:outputText value="#{hm.horario.entrada}" />
-					</p:column>
-					<p:column headerText="Saida Horário de Trabalho">
-						<h:outputText value="#{hm.horario.saida}" />
-					</p:column>
-					<p:column headerText="Entrada Horário de Marcação">
-						<h:outputText value="#{hm.marcacao.entrada}" />
-					</p:column>
-					<p:column headerText="Saida Horário de Marcação">
-						<h:outputText value="#{hm.marcacao.saida}" />
-					</p:column>
-					<p:column headerText="Atraso">
-						<h:outputText value="#{hm.horarioAtrasoFormatado}" />
-					</p:column>
-					<p:column headerText="Hora Extra">
-						<h:outputText value="#{hm.horarioHoraExtraFormatado}" />
-					</p:column>
-				</p:dataTable>
+			</div>
+			<p:outputPanel columns="2" columnClasses="coluna1,coluna2">
+				<div class="table-responsive">
+					<p:dataTable id="tanbleMarcacoes"
+						value="#{horarioTrabalhoBean.horariosMarcacoes}" var="hm">
+
+						<p:column headerText="Entrada Horário De Trabalho">
+							<h:outputText value="#{hm.horario.entrada}" />
+						</p:column>
+						<p:column headerText="Saida Horário de Trabalho">
+							<h:outputText value="#{hm.horario.saida}" />
+						</p:column>
+						<p:column headerText="Entrada Horário de Marcação">
+							<h:outputText value="#{hm.marcacao.entrada}" />
+						</p:column>
+						<p:column headerText="Saida Horário de Marcação">
+							<h:outputText value="#{hm.marcacao.saida}" />
+						</p:column>
+						<p:column headerText="Atraso">
+							<h:outputText value="#{hm.horarioAtrasoFormatado}" />
+						</p:column>
+						<p:column headerText="Hora Extra">
+							<h:outputText value="#{hm.horarioHoraExtraFormatado}" />
+						</p:column>
+					</p:dataTable>
+				</div>
 			</p:outputPanel>
 		</h:form>
 	</div>
