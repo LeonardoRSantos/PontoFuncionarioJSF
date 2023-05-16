@@ -2,10 +2,12 @@ package br.com.pontofuncionarios.bean;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 
-import br.com.pontofuncionarios.domain.HorarioMarcacao;
+import br.com.pontofuncionarios.domain.Horario;
 import br.com.pontofuncionarios.domain.HorarioTrabalho;
 import br.com.pontofuncionarios.domain.Marcacao;
+import br.com.pontofuncionarios.service.HorarioServiceImpl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,10 +18,14 @@ public class HorarioTrabalhoBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private List<HorarioTrabalho> horarios;
-    private List<HorarioMarcacao> horariosMarcacoes = new ArrayList<>();
+    private List<Marcacao> marcacoes;
     private HorarioTrabalho horarioAtual;
     private Marcacao marcacao;
-    private List<Marcacao> marcacoes;
+    private List<Horario> atrasos;
+    private List<Horario> horasExtras;
+    
+    private HorarioServiceImpl horarioService;
+    
     
 
     @PostConstruct
@@ -28,25 +34,38 @@ public class HorarioTrabalhoBean implements Serializable {
         horarioAtual = new HorarioTrabalho();
         marcacao = new Marcacao();
         marcacoes = new ArrayList<>();
+        atrasos = new ArrayList<>();
+        horasExtras = new ArrayList<>();
+        horarioService = new HorarioServiceImpl();
         
     }
 
     public void cadastrarHorario() {
         horarios.add(horarioAtual);
-        marcacoes.add(marcacao);
-        horariosMarcacoes.add(new HorarioMarcacao(horarioAtual, marcacao));
+//        horariosMarcacoes.add(new HorarioMarcacao(horarioAtual, null));
         horarioAtual = new HorarioTrabalho(); 
-        marcacao = new Marcacao();
     }
+    
+    public void cadastrarMarcacao() {
+        marcacoes.add(marcacao);        
+        atrasos = horarioService.calcularAtraso(horarios, marcacoes);
+        horasExtras = horarioService.calcularHoraExtra(horarios, marcacoes);
+        marcacao = new Marcacao(); 
+    }
+  
+
     
     public void limpar() {    	
-    	horariosMarcacoes = new ArrayList<>();
+    	horarios.clear();
+        marcacoes.clear();
+        horarioAtual = new HorarioTrabalho();
+        marcacao = new Marcacao();
+        horasExtras.clear();
+        atrasos.clear();
     }
     
     
-    public List<HorarioMarcacao> getHorariosMarcacoes() {
-        return horariosMarcacoes;
-    }
+   
     // Getters e setters
     
     
@@ -78,5 +97,12 @@ public class HorarioTrabalhoBean implements Serializable {
 	}
     public void setMarcacoes(List<Marcacao> marcacoes) {
 		this.marcacoes = marcacoes;
+	}
+    
+    public List<Horario> getAtrasos() {
+		return atrasos;
+	}
+    public List<Horario> getHorasExtras() {
+		return horasExtras;
 	}
 }

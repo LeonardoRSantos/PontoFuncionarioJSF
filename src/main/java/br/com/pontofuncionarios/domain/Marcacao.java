@@ -2,61 +2,20 @@ package br.com.pontofuncionarios.domain;
 
 import java.io.Serializable;
 import java.time.LocalTime;
-import java.util.Objects;
 
-import br.com.pontofuncionarios.repository.Horario;
-
-public class Marcacao implements Horario,Serializable {
+public class Marcacao extends Horario implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private LocalTime entrada;
-    private LocalTime saida;
-
-    // Construtor vazio
+    
     public Marcacao() {
     }
 
-    // Construtor com parâmetros
-    public Marcacao(LocalTime entrada, LocalTime saida) {
-        this.entrada = entrada;
-        this.saida = saida;
+    public Marcacao(Integer id,LocalTime entrada, LocalTime saida) {
+    	super(id,entrada,saida);
     }
-
-    // Getters e setters
     
-    @Override
-    public LocalTime getEntrada() {
-        return entrada;
+    public void adicionarMarcacao(LocalTime entrada, LocalTime saida) {
+        super.setEntrada(entrada);
+        super.setSaida(saida);
     }
-    @Override
-    public void setEntrada(LocalTime entrada) {
-        this.entrada = entrada;
-    }
-    @Override
-    public LocalTime getSaida() {
-        return saida;
-    }
-    @Override
-    public void setSaida(LocalTime saida) {
-        this.saida = saida;
-    }
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(entrada, saida);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Marcacao other = (Marcacao) obj;
-		return Objects.equals(entrada, other.entrada) && Objects.equals(saida, other.saida);
-	}
-    
-    
 }
