@@ -56,12 +56,14 @@
 				<div class="col-md-4 text-right">
 					<p:commandButton id="cadastrarHorario" value="Cadastrar Horários"
 						action="#{horarioTrabalhoBean.cadastrarHorario}"
-						update=":form:tabelaHorario entrada saida" styleClass="btn btn-primary" />
+						update=":form:tabelaHorario entrada saida"
+						styleClass="btn btn-primary" />
 				</div>
 
 			</div>
 			<hr />
-			<p:outputPanel columns="2" columnClasses="coluna1,coluna2" style="width: 50%">
+			<p:outputPanel columns="2" columnClasses="coluna1,coluna2"
+				style="width: 50%">
 				<div class="table-responsive">
 					<p:dataTable id="tabelaHorario"
 						value="#{horarioTrabalhoBean.horarios}" var="hm">
@@ -90,15 +92,20 @@
 						value="#{horarioTrabalhoBean.marcacao.saida}"
 						converter="localTimeConverter" pattern="HH:mm" showOn="button" />
 				</div>
-				<div class="col-md-4 text-right">
-					<p:commandButton id="cadastrarMarcacao" value="Cadastrar Marcacões"
+				<div class="text-right">
+					<p:commandButton id="cadastrarMarcacao" value="Cadastrar Marcações"
 						action="#{horarioTrabalhoBean.cadastrarMarcacao}"
-						update=":form:tabelaMarcacao :form:tabelaAtrasos :form:tabelaHoraExtra
-						entrada2 saida2" styleClass="btn btn-primary" />
+						update=":form:tabelaMarcacao :form:tabelaAtrasos :form:tabelaHoraExtra entrada2 saida2"
+						styleClass="btn btn-primary" />
+					<p:commandButton id="limparMarcacao" value="Limpar Marcações"
+						action="#{horarioTrabalhoBean.limparMarcacoes}"
+						update=":form:tabelaMarcacao :form:tabelaAtrasos :form:tabelaHoraExtra entrada2 saida2"
+						styleClass="btn btn-primary" />
 				</div>
 			</div>
 			<hr />
-			<p:outputPanel columns="2" columnClasses="coluna1,coluna2" style="width: 50%">
+			<p:outputPanel columns="2" columnClasses="coluna1,coluna2"
+				style="width: 50%">
 				<div class="table-responsive">
 					<p:dataTable id="tabelaMarcacao"
 						value="#{horarioTrabalhoBean.marcacoes}" var="hm">
@@ -139,9 +146,9 @@
 			<p:outputPanel columns="2" columnClasses="coluna1,coluna2">
 				<div class="table-responsive">
 					<p:dataTable id="tabelaAtrasos" style="width: 30%"
-								 value="#{horarioTrabalhoBean.atrasos}" var="atraso">
+						value="#{horarioTrabalhoBean.atrasos}" var="atraso">
 						<p:column headerText="Entrada">
-								<h:outputText value="#{atraso.entrada}" />
+							<h:outputText value="#{atraso.entrada}" />
 						</p:column>
 						<p:column headerText="Saida">
 							<h:outputText value="#{atraso.saida}" />
@@ -153,7 +160,7 @@
 			<hr />
 			<h2 class="titulo">Cálculo de Hora Extra</h2>
 			<p:dataTable id="tabelaHoraExtra" style="width: 30%"
-						 value="#{horarioTrabalhoBean.horasExtras}" var="horaExtra">
+				value="#{horarioTrabalhoBean.horasExtras}" var="horaExtra">
 				<p:column headerText="Entrada">
 					<h:outputText value="#{horaExtra.entrada}" />
 				</p:column>

@@ -57,9 +57,13 @@ public class HorarioTrabalhoBean implements Serializable {
     
     public void limpar() {    	
     	horarios.clear();
+        marcacoes.clear();        
+        horasExtras.clear();
+        atrasos.clear();
+    }
+    
+    public void limparMarcacoes() {    	
         marcacoes.clear();
-        horarioAtual = new HorarioTrabalho();
-        marcacao = new Marcacao();
         horasExtras.clear();
         atrasos.clear();
     }
